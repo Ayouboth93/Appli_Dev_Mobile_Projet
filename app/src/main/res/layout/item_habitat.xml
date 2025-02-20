@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp">
+
+    <!-- Nom du résident -->
+    <TextView
+        android:id="@+id/nomHabitat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_alignParentStart="true"
+        android:layout_marginEnd="8dp" />
+
+    <!-- Badge pour l'étage (Ex: ETAGE 1) -->
+    <TextView
+        android:id="@+id/etageHabitat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ETAGE 1"
+        android:textColor="@android:color/white"
+        android:padding="4dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/bg_etage" />
+
+    <!-- 2e ligne : X équipements + icônes -->
+    <LinearLayout
+        android:id="@+id/layoutEquipements"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/nomHabitat"
+        android:orientation="horizontal"
+        android:layout_marginTop="4dp">
+
+        <!-- TextView : "4 équipements" -->
+        <TextView
+            android:id="@+id/tvNombreEquipements"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="4 équipements"
+            android:textSize="14sp"
+            android:textColor="#888888" />
+
+        <!-- Ensuite on viendra ajouter dynamiquement les ImageView
+             dans cette LinearLayout (ou on peut prédéfinir 4 ImageView). -->
+    </LinearLayout>
+</RelativeLayout>
