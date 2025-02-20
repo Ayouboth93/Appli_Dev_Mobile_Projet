@@ -1,0 +1,19 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Élément 1 : Mon compte -->
+    <item
+        android:id="@+id/nav_account"
+        android:icon="@drawable/logo"
+        android:title="Mon compte" />
+
+    <!-- Élément 2 : Consommation -->
+    <item
+        android:id="@+id/nav_consumption"
+        android:icon="@drawable/logo"
+        android:title="Consommation" />
+
+    <!-- Élément 3 : Quitter -->
+    <item
+        android:id="@+id/nav_exit"
+        android:icon="@drawable/logo"
+        android:title="Quitter" />
+</menu>
