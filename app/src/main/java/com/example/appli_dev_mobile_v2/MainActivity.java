@@ -1,7 +1,11 @@
 package com.example.appli_dev_mobile_v2;
 
+import static android.content.ContentValues.TAG;
+
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -12,6 +16,9 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import com.google.android.material.navigation.NavigationView;
+import com.koushikdutta.async.future.FutureCallback;
+import com.koushikdutta.ion.Ion;
+import com.koushikdutta.ion.Response;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -76,4 +83,30 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             super.onBackPressed();
         }
     }
+    ProgressDialog pDialog;
+    public void getRemoteHabitats() {
+        pDialog = new ProgressDialog(this);
+        pDialog.setMessage("Getting list of habitats...");
+        pDialog.setIndeterminate(true);
+        pDialog.setCancelable(false);
+        pDialog.show();
+        String urlString = "http://192.168.137.1/powerhome/getHabitats.php";
+        Ion.with(this)
+                .load(urlString)
+                .asString()
+                .setCallback(new FutureCallback<String>() {
+                    @Override
+                    public void onCompleted(Exception e, String result) {
+                        pDialog.dismiss();
+                        if(result == null)
+                            Log.d(TAG, "No response from the server!!!");
+                        else {
+                            // Traitement de result
+                        }
+                    }
+                });
+
+    }
+
+
 }

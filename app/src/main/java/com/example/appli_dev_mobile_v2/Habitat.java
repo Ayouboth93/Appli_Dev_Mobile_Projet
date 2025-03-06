@@ -1,5 +1,9 @@
 package com.example.appli_dev_mobile_v2;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
 import java.util.List;
 
 public class Habitat {
@@ -28,4 +32,16 @@ public class Habitat {
     public int getNombreEquipements() {
         return listeEquipements == null ? 0 : listeEquipements.size();
     }
+    public static Habitat getFromJson(String json){
+        Gson gson = new Gson();
+        Habitat obj = gson.fromJson(json, Habitat.class);
+        return obj;
+    }
+    public static List<Habitat> getListFromJson(String json){
+        Gson gson = new Gson();
+        Type type = new TypeToken<List<Habitat>>(){}.getType();
+        List<Habitat> list = gson.fromJson(json, type);
+        return list;
+    }
+
 }
