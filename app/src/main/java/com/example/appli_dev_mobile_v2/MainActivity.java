@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -54,6 +56,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(intent);
             }
         });
+        getRemoteHabitats();
     }
 
     @Override
@@ -83,8 +86,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             super.onBackPressed();
         }
     }
-    ProgressDialog pDialog;
+
     public void getRemoteHabitats() {
+        ProgressDialog pDialog;
         pDialog = new ProgressDialog(this);
         pDialog.setMessage("Getting list of habitats...");
         pDialog.setIndeterminate(true);
@@ -101,7 +105,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         if(result == null)
                             Log.d(TAG, "No response from the server!!!");
                         else {
-                            // Traitement de result
+                            Toast.makeText(getApplicationContext(), "Conexion serveur réussie ! ", Toast.LENGTH_SHORT).show();
+
                         }
                     }
                 });
