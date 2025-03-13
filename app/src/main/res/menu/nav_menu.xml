@@ -1,19 +1,27 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- Élément 1 : Mon compte -->
     <item
-        android:id="@+id/nav_account"
+        android:id="@+id/nav_habitat"
         android:icon="@drawable/logo"
-        android:title="Mon compte" />
+        android:title="Mon Habitat" />
 
     <!-- Élément 2 : Consommation -->
     <item
-        android:id="@+id/nav_consumption"
+        android:id="@+id/nav_parametres"
         android:icon="@drawable/logo"
-        android:title="Consommation" />
+        android:title="Paramètres" />
+    <item
+        android:id="@+id/nav_requetes"
+        android:icon="@drawable/logo"
+        android:title="Mes requêtes" />
+    <item
+        android:id="@+id/nav_mon_habitat"
+        android:icon="@drawable/logo"
+        android:title="Mon habitat" />
 
     <!-- Élément 3 : Quitter -->
     <item
-        android:id="@+id/nav_exit"
+        android:id="@+id/nav_disconnect"
         android:icon="@drawable/logo"
-        android:title="Quitter" />
+        android:title="Se déconnecter" />
 </menu>

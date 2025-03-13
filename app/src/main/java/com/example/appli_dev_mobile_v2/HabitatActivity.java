@@ -1,6 +1,7 @@
 package com.example.appli_dev_mobile_v2;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -13,12 +14,18 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import com.google.android.material.navigation.NavigationView;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.koushikdutta.async.future.FutureCallback;
+import com.koushikdutta.ion.Ion;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class HabitatActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout drawerLayout;
+    private ListView listView;  // Déclaration globale de listView
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,46 +48,13 @@ public class HabitatActivity extends AppCompatActivity implements NavigationView
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
-        // Initialisation de la ListView et des données
-        ListView listView = findViewById(R.id.listViewHabitats);
-        List<Habitat> habitants = new ArrayList<>();
+        // Initialisation de la ListView
+        listView = findViewById(R.id.listViewHabitats);
 
-        // Exemple pour Gaëtan Leclair
-        List<Integer> equipGaetan = new ArrayList<>();
-        equipGaetan.add(R.drawable.ic_aspirateur);
-        equipGaetan.add(R.drawable.ic_machine_a_laver);
-        equipGaetan.add(R.drawable.ic_fer_a_repasser);
-        equipGaetan.add(R.drawable.ic_climatiseur);
-        habitants.add(new Habitat("Gaëtan Leclair", 1, equipGaetan));
+        // Récupérer les données depuis la base
+        fetchHabitats();
 
-        // Pour Cédric Boudet (1 équipement)
-        List<Integer> equipCedric = new ArrayList<>();
-        equipCedric.add(R.drawable.ic_aspirateur);
-        habitants.add(new Habitat("Cédric Boudet", 1, equipCedric));
-
-        // etc.
-        List<Integer> equipGaylord = new ArrayList<>();
-        equipGaylord.add(R.drawable.ic_machine_a_laver);
-        equipGaylord.add(R.drawable.ic_fer_a_repasser);
-        habitants.add(new Habitat("Gaylord Thibodeaux", 2, equipGaylord));
-
-        // Adam Jacquinot (3 équipements)
-        List<Integer> equipAdam = new ArrayList<>();
-        equipAdam.add(R.drawable.ic_aspirateur);
-        equipAdam.add(R.drawable.ic_machine_a_laver);
-        equipAdam.add(R.drawable.ic_fer_a_repasser);
-        habitants.add(new Habitat("Adam Jacquinot", 3, equipAdam));
-
-        // Abel Fresnel (1 équipement)
-        List<Integer> equipAbel = new ArrayList<>();
-        equipAbel.add(R.drawable.ic_climatiseur);
-        habitants.add(new Habitat("Abel Fresnel", 3, equipAbel));
-
-        // Création de l'Adapter
-        HabitatAdapter adapter = new HabitatAdapter(this, habitants);
-        listView.setAdapter(adapter);
-
-        // Gestion du clic sur un élément
+        // Gestion du clic sur un élément de la liste
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -95,11 +69,11 @@ public class HabitatActivity extends AppCompatActivity implements NavigationView
         // Gérer les clics sur les éléments du menu
         int itemId = item.getItemId();
 
-        if (itemId == R.id.nav_account) {
+        if (itemId == R.id.nav_habitat) {
             // Ouvrir le fragment ou l'activité "Mon compte"
-        } else if (itemId == R.id.nav_consumption) {
+        } else if (itemId == R.id.nav_mon_habitat) {
             // Ouvrir le fragment ou l'activité "Consommation"
-        } else if (itemId == R.id.nav_exit) {
+        } else if (itemId == R.id.nav_disconnect) {
             // Fermer l'application
             finish();
         }
@@ -118,4 +92,31 @@ public class HabitatActivity extends AppCompatActivity implements NavigationView
             super.onBackPressed();
         }
     }
+
+    private void fetchHabitats() {
+        String url = "http://10.0.2.2/powerhome/getAllData.php"; // Vérifie si c'est bien l'IP correcte
+
+        Ion.with(this)
+                .load(url)
+
+                .asString()
+                .setCallback(new FutureCallback<String>() {
+                    @Override
+                    public void onCompleted(Exception e, String result) {
+
+
+                        if (result == null) {
+                            Toast.makeText(HabitatActivity.this, "Réponse vide du serveur", Toast.LENGTH_LONG).show();
+                        }
+                        else{
+                            Toast.makeText(HabitatActivity.this,"connexion réussie",Toast.LENGTH_SHORT).show();
+                        }
+
+
+                    }
+                });
+    }
+
+
+
 }

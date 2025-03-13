@@ -20,7 +20,6 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.google.android.material.navigation.NavigationView;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
-import com.koushikdutta.ion.Response;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -47,30 +46,33 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
-        // Gérer le clic sur le bouton "Voir la liste des habitants"
-        Button btnOuvrir = findViewById(R.id.btnOuvrir);
-        btnOuvrir.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, HabitatActivity.class);
-                startActivity(intent);
-            }
-        });
-        getRemoteHabitats();
+
+
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int itemId = item.getItemId();
 
-        if (itemId == R.id.nav_account) {
-            // Ouvrir le fragment ou l'activité "Mon compte"
-        } else if (itemId == R.id.nav_consumption) {
-            // Ouvrir le fragment ou l'activité "Consommation"
-        } else if (itemId == R.id.nav_exit) {
+        if (itemId == R.id.nav_habitat) {
+            Intent intent = new Intent(MainActivity.this, HabitatActivity.class);
+            startActivity(intent);
+        }
+        else if (itemId == R.id.nav_parametres) {
+
+        }
+        else if(itemId == R.id.nav_requetes){
+
+        }
+        else if(itemId == R.id.nav_mon_habitat){
+
+        }
+
+        else if (itemId == R.id.nav_disconnect) {
             // Fermer l'application
             finish();
         }
+
 
         // Fermer le menu déroulant après la sélection
         drawerLayout.closeDrawer(GravityCompat.START);
@@ -87,31 +89,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    public void getRemoteHabitats() {
-        ProgressDialog pDialog;
-        pDialog = new ProgressDialog(this);
-        pDialog.setMessage("Getting list of habitats...");
-        pDialog.setIndeterminate(true);
-        pDialog.setCancelable(false);
-        pDialog.show();
-        String urlString = "http://192.168.137.1/powerhome/getHabitats.php";
-        Ion.with(this)
-                .load(urlString)
-                .asString()
-                .setCallback(new FutureCallback<String>() {
-                    @Override
-                    public void onCompleted(Exception e, String result) {
-                        pDialog.dismiss();
-                        if(result == null)
-                            Log.d(TAG, "No response from the server!!!");
-                        else {
-                            Toast.makeText(getApplicationContext(), "Conexion serveur réussie ! ", Toast.LENGTH_SHORT).show();
 
-                        }
-                    }
-                });
-
-    }
 
 
 }
