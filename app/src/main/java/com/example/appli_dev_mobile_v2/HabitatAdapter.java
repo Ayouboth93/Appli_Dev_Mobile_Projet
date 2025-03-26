@@ -1,5 +1,7 @@
 package com.example.appli_dev_mobile_v2;
 
+import static java.security.AccessController.getContext;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.appli_dev_mobile_v2.Habitat;
+import com.example.appli_dev_mobile_v2.R;
 
 import java.util.List;
 
@@ -32,43 +35,40 @@ public class HabitatAdapter extends ArrayAdapter<Habitat> {
         // Récupérer les vues
         TextView tvNom = convertView.findViewById(R.id.nomHabitat);
         TextView tvEtage = convertView.findViewById(R.id.etageHabitat);
-        LinearLayout layoutEquipements = convertView.findViewById(R.id.layoutEquipements);
         TextView tvNombreEquipements = convertView.findViewById(R.id.tvNombreEquipements);
+        LinearLayout layoutEquipements = convertView.findViewById(R.id.layoutEquipements);
 
-        // Affecter le nom
-        tvNom.setText(habitat.getId());
+        // Afficher nom + prénom
+        String occupant = habitat.getFirstname() + " " + habitat.getLastname();
+        tvNom.setText(occupant);
 
-        // Affecter l'étage (ex : "ETAGE 1")
+        // Afficher "ETAGE X"
         tvEtage.setText("ETAGE " + habitat.getFloor());
-        /*
-        // Mettre "X équipements"
-        int nb = habitat.getNombreEquipements();
+
+        // Nombre d’équipements
+        int nb = habitat.getNumberOfAppliances();
         tvNombreEquipements.setText(nb + (nb > 1 ? " équipements" : " équipement"));
 
-        // Retirer d’anciens icônes éventuellement présents
-        // (important si les views sont recyclées dans une ListView)
-        // On garde tvNombreEquipements (index 0),
-        // donc on supprime tout ce qui vient après.
+        // On enlève les anciennes icônes (si recyclage de vues)
         while (layoutEquipements.getChildCount() > 1) {
             layoutEquipements.removeViewAt(1);
         }
 
-        // Ajouter dynamiquement les icônes correspondant à la liste d’équipements
-        for (int drawableId : habitat.getListeEquipements()) {
+        // Ajouter dynamiquement les icônes
+        List<Integer> icons = habitat.getListeEquipementsIcons();
+        for (int drawableId : icons) {
             ImageView imageView = new ImageView(getContext());
             imageView.setImageResource(drawableId);
 
-            // Optionnel : dimensionner l’icône
-            int size = (int) getContext().getResources().getDisplayMetrics().density * 24; // 24dp
+            // Optionnel : dimensionner l’icône (24dp)
+            int size = (int) (getContext().getResources().getDisplayMetrics().density * 24);
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(size, size);
-            params.leftMargin = 8; // un petit espace entre les icônes
+            params.leftMargin = 8; // marge entre icônes
             imageView.setLayoutParams(params);
 
             layoutEquipements.addView(imageView);
         }
-        */
+
         return convertView;
     }
-
-
 }

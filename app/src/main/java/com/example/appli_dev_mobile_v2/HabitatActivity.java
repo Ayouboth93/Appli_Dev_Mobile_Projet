@@ -102,7 +102,12 @@ public class HabitatActivity extends AppCompatActivity implements NavigationView
                         // Affichage pour debug
                         Log.d("fetchHabitats", "Réponse JSON : " + result);
 
-                        // Parser le JSON en liste d'objets Habitat
+                        // Vérifier que la réponse commence bien par un tableau JSON
+                        if (!result.trim().startsWith("[")) {
+                            Toast.makeText(HabitatActivity.this, "Erreur lors du parsing des habitats : " + result, Toast.LENGTH_LONG).show();
+                            return;
+                        }
+
                         List<Habitat> list = Habitat.getListFromJson(result);
 
                         if (list != null) {
@@ -117,4 +122,5 @@ public class HabitatActivity extends AppCompatActivity implements NavigationView
                     }
                 });
     }
+
 }

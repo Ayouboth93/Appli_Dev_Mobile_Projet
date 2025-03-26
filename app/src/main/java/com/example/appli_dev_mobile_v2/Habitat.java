@@ -4,37 +4,68 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Habitat {
-    private int id;
+    private int habitat_id;
     private int floor;
     private int area;
+    private String firstname;
+    private String lastname;
+    private List<String> appliances; // liste des noms d'équipement
 
-    public Habitat(int id, int floor, int area) {
-        this.id = id;
-        this.floor = floor;
-        this.area = area;
+    // Getters
+    public int getHabitat_id() { return habitat_id; }
+    public int getFloor() { return floor; }
+    public int getArea() { return area; }
+    public String getFirstname() { return firstname; }
+    public String getLastname() { return lastname; }
+    public List<String> getAppliances() { return appliances; }
+
+    // Pour le nombre d'équipements
+    public int getNumberOfAppliances() {
+        if (appliances == null) return 0;
+        return appliances.size();
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public int getFloor() {
-        return floor;
-    }
-
-    public int getArea() {
-        return area;
-    }
+    // Méthode de parsing
     public static List<Habitat> getListFromJson(String json){
         Gson gson = new Gson();
         Type type = new TypeToken<List<Habitat>>(){}.getType();
         return gson.fromJson(json, type);
     }
 
+    // Convertir la liste d'équipements (String) en liste d'icônes (int)
+    // Ex: "Aspirateur" -> R.drawable.ic_aspirateur
+    public List<Integer> getListeEquipementsIcons() {
+        List<Integer> icons = new ArrayList<>();
+        if (appliances == null) return icons;
+
+        for (String equip : appliances) {
+            String lower = equip.toLowerCase();
+            switch (lower) {
+                case "aspirateur":
+                    icons.add(R.drawable.ic_aspirateur);
+                    break;
+                case "fer à repasser":
+                case "fer a repasser":
+                    icons.add(R.drawable.ic_fer_a_repasser);
+                    break;
+                case "machine à laver":
+                case "machine a laver":
+                    icons.add(R.drawable.ic_machine_a_laver);
+                    break;
+                // Ajoute ici tous les équipements que tu veux mapper à des icônes
+                default:
+                    icons.add(R.drawable.ic_launcher_foreground); // une icône par défaut
+                    break;
+            }
+        }
+        return icons;
+    }
 }
+
 /*
 public class Habitat {
     private String nom;
