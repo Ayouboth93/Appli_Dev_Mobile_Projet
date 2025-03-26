@@ -71,7 +71,7 @@ public class HabitatActivity extends AppCompatActivity implements NavigationView
 
         if (itemId == R.id.nav_habitat) {
             // Ouvrir le fragment ou l'activité "Mon compte"
-        } else if (itemId == R.id.nav_mon_habitat) {
+        } else if (itemId == R.id.nav_habitat) {
             // Ouvrir le fragment ou l'activité "Consommation"
         } else if (itemId == R.id.nav_disconnect) {
             // Fermer l'application

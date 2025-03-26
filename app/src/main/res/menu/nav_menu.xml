@@ -15,9 +15,9 @@
         android:icon="@drawable/logo"
         android:title="Mes requêtes" />
     <item
-        android:id="@+id/nav_mon_habitat"
+        android:id="@+id/nav_consommation"
         android:icon="@drawable/logo"
-        android:title="Mon habitat" />
+        android:title="Ma consommation" />
 
     <!-- Élément 3 : Quitter -->
     <item

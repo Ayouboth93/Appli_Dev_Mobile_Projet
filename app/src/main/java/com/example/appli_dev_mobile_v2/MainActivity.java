@@ -64,7 +64,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         else if(itemId == R.id.nav_requetes){
 
         }
-        else if(itemId == R.id.nav_mon_habitat){
+
+        else if(itemId == R.id.nav_consommation){
 
         }
 
