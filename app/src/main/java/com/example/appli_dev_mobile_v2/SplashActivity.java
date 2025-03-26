@@ -15,7 +15,7 @@ public class SplashActivity extends AppCompatActivity {
 
         // Délai avant de lancer MainActivity
         new Handler().postDelayed(() -> {
-            startActivity(new Intent(SplashActivity.this, MainActivity.class));
+            startActivity(new Intent(SplashActivity.this, LoginActivity.class));
             finish(); // Fermer SplashActivity pour ne pas revenir dessus en appuyant sur "Back"
         }, SPLASH_DELAY);
     }
