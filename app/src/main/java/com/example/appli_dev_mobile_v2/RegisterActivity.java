@@ -21,7 +21,7 @@ import java.net.URL;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    private EditText etFirstName, etLastName, etEmail, etPassword, etConfirmPassword;
+    private EditText etFirstName, etLastName, etEmail, etHabitatId, etPassword, etConfirmPassword;
     private Button btnRegister, btnGoToLogin;
 
     @Override
@@ -29,9 +29,11 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        // Récupération des vues
         etFirstName = findViewById(R.id.etFirstName);
         etLastName  = findViewById(R.id.etLastName);
         etEmail     = findViewById(R.id.etEmail);
+        etHabitatId = findViewById(R.id.etHabitatId); // nouvelle zone
         etPassword  = findViewById(R.id.etPassword);
         etConfirmPassword = findViewById(R.id.etConfirmPassword);
         btnRegister = findViewById(R.id.btnRegister);
@@ -41,13 +43,16 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                // Récupération des valeurs saisies
                 String firstname = etFirstName.getText().toString().trim();
                 String lastname  = etLastName.getText().toString().trim();
                 String email     = etEmail.getText().toString().trim();
+                String habitatId = etHabitatId.getText().toString().trim(); // nouveau champ
                 String password  = etPassword.getText().toString().trim();
                 String confirmPassword = etConfirmPassword.getText().toString().trim();
 
-                if (firstname.isEmpty() || lastname.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
+                if (firstname.isEmpty() || lastname.isEmpty() || email.isEmpty() || habitatId.isEmpty() ||
+                        password.isEmpty() || confirmPassword.isEmpty()) {
                     Toast.makeText(RegisterActivity.this, "Tous les champs sont requis", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -57,7 +62,7 @@ public class RegisterActivity extends AppCompatActivity {
                     return;
                 }
 
-                new RegisterTask().execute(firstname, lastname, email, password);
+                new RegisterTask().execute(firstname, lastname, email, password, habitatId);
             }
         });
 
@@ -80,6 +85,7 @@ public class RegisterActivity extends AppCompatActivity {
             String lastname = params[1];
             String email = params[2];
             String password = params[3];
+            String habitatId = params[4];
 
             try {
                 URL url = new URL(DBConfig.REGISTER_URL);
@@ -87,7 +93,8 @@ public class RegisterActivity extends AppCompatActivity {
                 conn.setRequestMethod("POST");
                 conn.setDoOutput(true);
 
-                String postData = "firstname=" + firstname + "&lastname=" + lastname + "&email=" + email + "&password=" + password;
+                String postData = "firstname=" + firstname + "&lastname=" + lastname +
+                        "&email=" + email + "&password=" + password + "&habitat_id=" + habitatId;
                 OutputStream os = new BufferedOutputStream(conn.getOutputStream());
                 os.write(postData.getBytes());
                 os.flush();
