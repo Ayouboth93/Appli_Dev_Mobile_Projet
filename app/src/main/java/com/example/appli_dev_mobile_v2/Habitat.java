@@ -56,7 +56,8 @@ public class Habitat {
                 case "machine a laver":
                     icons.add(R.drawable.ic_machine_a_laver);
                     break;
-                // Ajoute ici tous les équipements que tu veux mapper à des icônes
+                case "climatiseur":
+                    icons.add(R.drawable.ic_climatiseur);
                 default:
                     icons.add(R.drawable.ic_launcher_foreground); // une icône par défaut
                     break;
