@@ -17,9 +17,6 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.google.android.material.navigation.NavigationView;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
-import org.json.JSONArray;
-import org.json.JSONObject;
-import com.example.appli_dev_mobile_v2.Habitat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -84,7 +81,7 @@ public class HabitatActivity extends AppCompatActivity implements NavigationView
     }
 
     private void fetchHabitats() {
-        String url = "http://10.0.2.2/powerhome/getAllData.php"; // Vérifie si l'IP et l'URL sont corrects
+        String url = DBConfig.GET_HABITAT_URL; // Utilisation de l'URL depuis DBConfig
 
         Ion.with(this)
                 .load(url)
@@ -106,10 +103,12 @@ public class HabitatActivity extends AppCompatActivity implements NavigationView
                         Log.d("fetchHabitats", "Réponse JSON : " + result);
 
                         // Parser le JSON en liste d'objets Habitat
-                        List<Habitat> habitatList = Habitat.getListFromJson(result);
+                        List<Habitat> list = Habitat.getListFromJson(result);
 
-                        if (habitatList != null) {
-                            // Mettre à jour la ListView avec un adapter
+                        if (list != null) {
+                            habitatList.clear();
+                            habitatList.addAll(list);
+                            // Mettre à jour la ListView avec un adapter personnalisé
                             HabitatAdapter adapter = new HabitatAdapter(HabitatActivity.this, habitatList);
                             listView.setAdapter(adapter);
                         } else {
@@ -118,5 +117,4 @@ public class HabitatActivity extends AppCompatActivity implements NavigationView
                     }
                 });
     }
-
 }
