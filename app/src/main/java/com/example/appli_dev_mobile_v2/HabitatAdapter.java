@@ -36,11 +36,11 @@ public class HabitatAdapter extends ArrayAdapter<Habitat> {
         TextView tvNombreEquipements = convertView.findViewById(R.id.tvNombreEquipements);
 
         // Affecter le nom
-        tvNom.setText(habitat.getNom());
+        tvNom.setText(habitat.getId());
 
         // Affecter l'étage (ex : "ETAGE 1")
-        tvEtage.setText("ETAGE " + habitat.getEtage());
-
+        tvEtage.setText("ETAGE " + habitat.getFloor());
+        /*
         // Mettre "X équipements"
         int nb = habitat.getNombreEquipements();
         tvNombreEquipements.setText(nb + (nb > 1 ? " équipements" : " équipement"));
@@ -66,7 +66,7 @@ public class HabitatAdapter extends ArrayAdapter<Habitat> {
 
             layoutEquipements.addView(imageView);
         }
-
+        */
         return convertView;
     }
 

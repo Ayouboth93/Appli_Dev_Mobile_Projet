@@ -7,6 +7,36 @@ import java.lang.reflect.Type;
 import java.util.List;
 
 public class Habitat {
+    private int id;
+    private int floor;
+    private int area;
+
+    public Habitat(int id, int floor, int area) {
+        this.id = id;
+        this.floor = floor;
+        this.area = area;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public int getFloor() {
+        return floor;
+    }
+
+    public int getArea() {
+        return area;
+    }
+    public static List<Habitat> getListFromJson(String json){
+        Gson gson = new Gson();
+        Type type = new TypeToken<List<Habitat>>(){}.getType();
+        return gson.fromJson(json, type);
+    }
+
+}
+/*
+public class Habitat {
     private String nom;
     private int etage;
     private List<Integer> listeEquipements;  // Contient les IDs drawables (ic_aspirateur, etc.)
@@ -45,3 +75,4 @@ public class Habitat {
     }
 
 }
+*/
