@@ -8,20 +8,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Habitat {
-    private int habitat_id;
+    private static int habitat_id;
     private int floor;
     private int area;
     private String firstname;
     private String lastname;
-    private List<String> appliances; // liste des noms d'équipement
+    private  List<String> appliances; // liste des noms d'équipement
 
     // Getters
-    public int getHabitat_id() { return habitat_id; }
+    public static int getHabitat_id() { return habitat_id; }
     public int getFloor() { return floor; }
     public int getArea() { return area; }
     public String getFirstname() { return firstname; }
     public String getLastname() { return lastname; }
-    public List<String> getAppliances() { return appliances; }
+    public  List<String> getAppliances() { return appliances; }
+
+    // setter
+    public static void setHabitatId(int id) {
+        habitat_id = id;
+    }
 
     // Pour le nombre d'équipements
     public int getNumberOfAppliances() {

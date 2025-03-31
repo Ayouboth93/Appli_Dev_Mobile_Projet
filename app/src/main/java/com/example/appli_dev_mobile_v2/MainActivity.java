@@ -1,15 +1,9 @@
 package com.example.appli_dev_mobile_v2;
 
-import static android.content.ContentValues.TAG;
-
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -18,8 +12,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import com.google.android.material.navigation.NavigationView;
-import com.koushikdutta.async.future.FutureCallback;
-import com.koushikdutta.ion.Ion;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -55,8 +47,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int itemId = item.getItemId();
 
         if (itemId == R.id.nav_habitat) {
-            Intent intent = new Intent(MainActivity.this, HabitatActivity.class);
+            Intent intent = new Intent(this, MonHabitatActivity.class);
             startActivity(intent);
+            Intent closeIntent = new Intent("CLOSE_HABITAT_ACTIVITY");
+            sendBroadcast(closeIntent);
         }
         else if (itemId == R.id.nav_parametres) {
 
@@ -69,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         }
 
-        else if (itemId == R.id.nav_disconnect) {
+        else if (itemId == R.id.nav_calendar) {
             // Fermer l'application
             finish();
         }
@@ -89,8 +83,5 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             super.onBackPressed();
         }
     }
-
-
-
 
 }

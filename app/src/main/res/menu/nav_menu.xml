@@ -1,6 +1,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- Élément 1 : Mon compte -->
     <item
+        android:id="@+id/nav_calendar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:icon="@drawable/logo"
+        android:title="Calendrier" />
+    <item
         android:id="@+id/nav_habitat"
         android:icon="@drawable/logo"
         android:title="Mon Habitat" />
@@ -21,7 +27,7 @@
 
     <!-- Élément 3 : Quitter -->
     <item
-        android:id="@+id/nav_disconnect"
+        android:id="@+id/nav_calendar"
         android:icon="@drawable/logo"
         android:title="Se déconnecter" />
 </menu>

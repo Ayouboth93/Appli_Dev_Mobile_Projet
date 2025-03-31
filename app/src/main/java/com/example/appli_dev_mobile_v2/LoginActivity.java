@@ -108,6 +108,12 @@ public class LoginActivity extends AppCompatActivity {
                 String message = jsonObject.getString("message");
 
                 if (status.equals("success")) {
+
+                    // Récupérer l'habitat_id
+                    int habitatId = jsonObject.getInt("habitat_id");
+                    // Enregistrer habitat_id dans une classe statique
+                    Habitat.setHabitatId(habitatId);
+
                     Toast.makeText(LoginActivity.this, message, Toast.LENGTH_SHORT).show();
                     // Vous pouvez récupérer d'autres données, comme l'habitat_id
                     Intent intent = new Intent(LoginActivity.this, HabitatActivity.class);

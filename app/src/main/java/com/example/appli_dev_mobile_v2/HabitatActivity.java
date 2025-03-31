@@ -1,5 +1,6 @@
 package com.example.appli_dev_mobile_v2;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -57,15 +58,17 @@ public class HabitatActivity extends AppCompatActivity implements NavigationView
         });
     }
 
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int itemId = item.getItemId();
         if (itemId == R.id.nav_habitat) {
-            // Ouvrir l'activité habitat
-        } else if (itemId == R.id.nav_consommation) {
-            // Ouvrir l'activité consommation
-        } else if (itemId == R.id.nav_disconnect) {
-            finish();
+            Intent intent = new Intent(this, MonHabitatActivity.class);
+            startActivity(intent);
+        }
+        else if (itemId == R.id.nav_calendar) {
+            Intent intent = new Intent(this, CalendarActivity.class);
+            startActivity(intent);
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
