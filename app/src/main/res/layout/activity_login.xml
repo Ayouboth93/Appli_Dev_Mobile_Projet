@@ -2,14 +2,15 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#EFEFEF">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:gravity="center_horizontal"
-        android:padding="24dp">
+        android:padding="24dp"
+        android:gravity="center_horizontal">
 
         <!-- Zone verte avec le titre -->
         <LinearLayout
@@ -29,45 +30,60 @@
                 android:textColor="@android:color/white" />
         </LinearLayout>
 
-        <!-- Espace entre la barre verte et le formulaire -->
+        <!-- Espace entre la zone verte et le formulaire -->
         <View
             android:layout_width="match_parent"
             android:layout_height="32dp" />
 
-        <!-- Email -->
-        <EditText
-            android:id="@+id/etEmail"
+        <!-- Formulaire de connexion dans un CardView -->
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Adresse email"
-            android:inputType="textEmailAddress"
-            android:padding="16dp"
-            android:background="@drawable/edittext_background"
-            android:layout_marginBottom="16dp" />
+            app:cardCornerRadius="8dp"
+            app:cardElevation="6dp"
+            android:layout_marginBottom="16dp">
 
-        <!-- Mot de passe -->
-        <EditText
-            android:id="@+id/etPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Mot de passe"
-            android:inputType="textPassword"
-            android:padding="16dp"
-            android:background="@drawable/edittext_background"
-            android:layout_marginBottom="24dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
 
-        <!-- Bouton de connexion -->
-        <Button
-            android:id="@+id/btnLogin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Connexion"
-            android:textColor="@android:color/white"
-            android:backgroundTint="@color/green"
-            android:textStyle="bold"
-            android:padding="14dp"
-            android:layout_marginBottom="8dp"
-            android:elevation="4dp" />
+                <!-- Email -->
+                <EditText
+                    android:id="@+id/etEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Adresse email"
+                    android:inputType="textEmailAddress"
+                    android:padding="16dp"
+                    android:background="@drawable/edittext_background"
+                    android:layout_marginBottom="16dp" />
+
+                <!-- Mot de passe -->
+                <EditText
+                    android:id="@+id/etPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Mot de passe"
+                    android:inputType="textPassword"
+                    android:padding="16dp"
+                    android:background="@drawable/edittext_background"
+                    android:layout_marginBottom="24dp" />
+
+                <!-- Bouton de connexion -->
+                <Button
+                    android:id="@+id/btnLogin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Connexion"
+                    android:textColor="@android:color/white"
+                    android:backgroundTint="@color/green"
+                    android:textStyle="bold"
+                    android:padding="14dp"
+                    android:elevation="4dp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
         <!-- Bouton pour aller à la page d'inscription -->
         <Button

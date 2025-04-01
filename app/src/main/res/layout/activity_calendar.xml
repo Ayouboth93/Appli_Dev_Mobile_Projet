@@ -1,66 +1,85 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".CalendarActivity">
+    android:background="#EFEFEF"
+    android:padding="16dp">
 
-    <!-- Affichage du mois et navigation -->
+    <!-- Container type "carte" pour la navigation du mois et la grille du calendrier -->
     <LinearLayout
-        android:layout_width="match_parent"
+        android:id="@+id/calendarCard"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:orientation="horizontal"
-        android:gravity="center">
+        android:orientation="vertical"
+        android:background="@android:color/white"
+        android:elevation="6dp"
+        android:padding="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
-        <Button
-            android:id="@+id/prevMonth"
-            android:layout_width="wrap_content"
+        <!-- Navigation du mois -->
+        <LinearLayout
+            android:id="@+id/monthNavigation"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Précédent"
-            android:textSize="16dp"
-            android:textColor="@color/white"
-            android:background="@color/green"/>
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginBottom="16dp">
 
-        <TextView
-            android:id="@+id/monthYearText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:padding="16dp"
-            android:textColor="@color/black"
-            android:text="Mois Année" />
+            <Button
+                android:id="@+id/prevMonth"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Précédent"
+                android:textSize="16sp"
+                android:textColor="@android:color/white"
+                android:backgroundTint="@color/green"/>
 
-        <Button
-            android:id="@+id/nextMonth"
-            android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/monthYearText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mois Année"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:padding="16dp"
+                android:textColor="#333333"/>
+
+            <Button
+                android:id="@+id/nextMonth"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Suivant"
+                android:textSize="16sp"
+                android:textColor="@android:color/white"
+                android:backgroundTint="@color/green"/>
+        </LinearLayout>
+
+        <!-- Grille du calendrier -->
+        <GridView
+            android:id="@+id/calendarGridView"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Suivant"
-            android:textSize="16dp"
-            android:textColor="@color/white"
-            android:background="@color/green"/>
+            android:numColumns="7"
+            android:horizontalSpacing="2dp"
+            android:verticalSpacing="2dp"/>
     </LinearLayout>
 
-    <!-- Grille du calendrier -->
-    <GridView
-        android:id="@+id/calendarGridView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:horizontalSpacing="2dp"
-        android:numColumns="7"
-        android:verticalSpacing="2dp"
-        android:layout_marginTop="20sp"/>
-
+    <!-- Bouton de réservation placé en dessous du container -->
     <Button
         android:id="@+id/btnReserve"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Faire une réservation"
-        android:layout_marginTop="16dp"
         android:padding="12dp"
         android:backgroundTint="@color/green"
-        android:textColor="@android:color/white"/>
+        android:textColor="@android:color/white"
+        app:layout_constraintTop_toBottomOf="@id/calendarCard"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="24dp"/>
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

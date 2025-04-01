@@ -2,8 +2,10 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="48dp"
     android:layout_height="48dp"
+    android:layout_margin="4dp"
     android:background="@android:color/white"
-    android:gravity="center">
+    android:gravity="center"
+    android:elevation="2dp">
 
     <TextView
         android:id="@+id/textViewDay"
@@ -11,6 +13,7 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:textSize="16sp"
-        android:textColor="@android:color/black"
-        android:background="?android:attr/selectableItemBackground"/>
+        android:textColor="#333333"
+        android:background="?android:attr/selectableItemBackground"
+        android:padding="8dp"/>
 </FrameLayout>

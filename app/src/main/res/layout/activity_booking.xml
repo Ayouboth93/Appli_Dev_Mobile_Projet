@@ -1,52 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:background="#EFEFEF"
     android:padding="16dp">
 
-    <!-- Titre -->
-    <TextView
-        android:id="@+id/tvTitle"
-        android:layout_width="wrap_content"
+    <!-- Container type "carte" pour le formulaire -->
+    <LinearLayout
+        android:id="@+id/container"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Réserver un créneau"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:layout_gravity="center"
-        android:paddingBottom="10dp"/>
+        android:orientation="vertical"
+        android:background="@android:color/white"
+        android:elevation="6dp"
+        android:padding="24dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
-    <!-- Choisir l'appareil -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Sélectionnez un appareil :" />
+        <!-- Titre -->
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Réserver un créneau"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textColor="#333333"
+            android:layout_marginBottom="24dp"/>
 
-    <Spinner
-        android:id="@+id/spinnerAppliance"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"/>
+        <!-- Label : Sélectionnez un appareil : -->
+        <TextView
+            android:id="@+id/tvApplianceLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sélectionnez un appareil :"
+            android:textSize="16sp"
+            android:textColor="#333333"
+            android:layout_marginBottom="8dp"/>
 
-    <!-- Choisir le créneau -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Sélectionnez un créneau horaire :" />
+        <Spinner
+            android:id="@+id/spinnerAppliance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"/>
 
-    <Spinner
-        android:id="@+id/spinnerTimeSlot"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"/>
+        <!-- Label : Sélectionnez un créneau horaire : -->
+        <TextView
+            android:id="@+id/tvTimeSlotLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sélectionnez un créneau horaire :"
+            android:textSize="16sp"
+            android:textColor="#333333"
+            android:layout_marginBottom="8dp"/>
 
-    <!-- Bouton de réservation -->
-    <Button
-        android:id="@+id/btnReserveSlot"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Réserver"
-        android:background="@color/green"
-        android:textColor="@android:color/white"/>
-</LinearLayout>
+        <Spinner
+            android:id="@+id/spinnerTimeSlot"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"/>
+
+        <!-- Bouton de réservation -->
+        <Button
+            android:id="@+id/btnReserveSlot"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Réserver"
+            android:backgroundTint="@color/green"
+            android:textColor="@android:color/white"
+            android:padding="12dp"/>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,27 +8,35 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <!-- Contenu principal -->
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <!-- Contenu principal modernisé -->
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#EFEFEF">
 
-        <!-- Toolbar (barre verte en haut) -->
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="0dp"
+        <!-- Barre d'applications avec effet de défilement -->
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/green"
-            android:elevation="4dp"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            app:title="Mon Application" />
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/green"
+                android:elevation="4dp"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                app:title="Mon Application" />
+        </com.google.android.material.appbar.AppBarLayout>
 
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <!-- Conteneur pour le contenu principal (à remplacer par tes fragments ou vues) -->
+        <FrameLayout
+            android:id="@+id/content_frame"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <!-- Menu déroulant (NavigationView) -->
     <com.google.android.material.navigation.NavigationView
@@ -38,6 +46,5 @@
         android:layout_gravity="start"
         android:background="@android:color/white"
         app:headerLayout="@layout/nav_header"
-        app:menu="@menu/nav_menu" />
-
+        app:menu="@menu/nav_menu"/>
 </androidx.drawerlayout.widget.DrawerLayout>
