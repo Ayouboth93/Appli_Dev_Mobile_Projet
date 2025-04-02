@@ -93,36 +93,29 @@ public class CalendarActivity extends AppCompatActivity {
         List<String> days = new ArrayList<>();
         Calendar tempCalendar = (Calendar) currentCalendar.clone();
         tempCalendar.set(Calendar.DAY_OF_MONTH, 1);
-        int firstDayOfWeek = tempCalendar.get(Calendar.DAY_OF_WEEK) - 1;
+        // On ne calcule plus firstDayOfWeek ni n'ajoute de cellules vides
         int daysInMonth = tempCalendar.getActualMaximum(Calendar.DAY_OF_MONTH);
 
-        for (int i = 0; i < firstDayOfWeek; i++) {
-            days.add(""); // Espaces vides pour alignement
-        }
-
         for (int i = 1; i <= daysInMonth; i++) {
-            days.add(String.valueOf(i)); // Ajouter uniquement les numéros des jours
+            days.add(String.valueOf(i)); // Ajoute uniquement les numéros des jours
         }
 
         CalendarAdapter adapter = new CalendarAdapter(this, days, colorMap, currentCalendar);
         calendarGridView.setAdapter(adapter);
 
-
-        // Gérer le clic sur un jour
+        // Gestion du clic sur un jour
         calendarGridView.setOnItemClickListener((parent, view, position, id) -> {
             String day = days.get(position);
-            if (!day.isEmpty()) { // Vérifier que ce n'est pas un espace vide
+            if (!day.isEmpty()) {
                 String formattedDate = String.format(Locale.getDefault(), "%d-%02d-%02d",
                         currentCalendar.get(Calendar.YEAR),
                         currentCalendar.get(Calendar.MONTH) + 1,
                         Integer.parseInt(day));
-
-                // Lancer BookingActivity avec la date sélectionnée
                 Intent intent = new Intent(CalendarActivity.this, BookingActivity.class);
                 intent.putExtra("selected_date", formattedDate);
                 startActivity(intent);
             }
         });
-
     }
+
 }

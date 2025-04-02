@@ -45,10 +45,12 @@ public class CalendarAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(android.R.layout.simple_list_item_1, parent, false);
+            convertView = LayoutInflater.from(context).inflate(R.layout.grid_item_day, parent, false);
+
         }
 
-        TextView textView = convertView.findViewById(android.R.id.text1);
+        TextView textView = convertView.findViewById(R.id.textViewDay);
+
         String day = days.get(position);
         textView.setText(day.isEmpty() ? "" : day);
 
